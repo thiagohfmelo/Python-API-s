@@ -60,3 +60,52 @@ Este projeto utiliza a rede YOLO (You Only Look Once) para detecção de objetos
 ## Endpoints
 
 - **POST /detect/**: Carrega uma imagem e realiza a detecção de objetos, retornando as coordenadas e a imagem processada com as caixas delimitadoras.
+
+# API de Consulta de Endereços com FastAPI e ViaCEP
+
+Este projeto utiliza a FastAPI para realizar consultas de endereços com base em CEPs, através da API pública ViaCEP.
+
+## Funcionalidades
+
+- **Consulta de CEP**: Permite buscar informações detalhadas de um endereço a partir de um CEP fornecido.
+
+## Requisitos
+
+- Python 3.x
+- FastAPI
+- httpx
+
+## Instalação
+
+1. Clone o repositório:
+    ```bash
+    git clone https://github.com/seuusuario/ConsultaEnderecoFastAPI.git
+    cd ConsultaEnderecoFastAPI
+    ```
+
+2. Instale as dependências:
+    ```bash
+    pip install fastapi httpx uvicorn
+    ```
+
+## Como Usar
+
+1. Execute a API:
+    ```bash
+    uvicorn main:app --reload
+    ```
+
+2. Envie uma requisição `GET` para o endpoint `/address/{cep}`, onde `{cep}` deve ser substituído por um CEP válido. A API retornará informações como rua, bairro, cidade, estado e código postal.
+
+## Estrutura do Projeto
+
+```plaintext
+.
+├── main.py
+└── README.md
+```
+
+## Endpoints
+
+- **GET /address/{cep}**: Retorna o endereço completo com base no CEP fornecido. Se o CEP não for encontrado, a API retorna uma mensagem de erro.
+
