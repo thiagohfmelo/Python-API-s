@@ -21,7 +21,7 @@ Este projeto utiliza a rede YOLO (You Only Look Once) para detecção de objetos
 
 1. Clone o repositório:
     ```bash
-    git clone https://github.com/vithorcamara/DetectorDeObjetosFastAPI.git
+    git clone [https://github.com/thiagohfmelo/Python-API-s/blob/main/apiBoundingBox.py]
     cd DetectorDeObjetosFastAPI
     ```
 
