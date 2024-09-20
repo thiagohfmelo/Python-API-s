@@ -79,7 +79,7 @@ Este projeto utiliza a FastAPI para realizar consultas de endereços com base em
 
 1. Clone o repositório:
     ```bash
-    git clone https://github.com/seuusuario/ConsultaEnderecoFastAPI.git
+    git clone https://github.com/thiagohfmelo/ConsultaEnderecoFastAPI.git
     cd ConsultaEnderecoFastAPI
     ```
 
