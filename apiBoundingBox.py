@@ -11,19 +11,19 @@ import base64
 
 app = FastAPI()
 
-# Defina os caminhos absolutos para os arquivos necessários
+
 base_path = os.path.dirname(__file__)
 labels_path = os.path.join(base_path, 'coco.names')
 config_path = os.path.join(base_path, 'yolov3.cfg')
 weights_path = os.path.join(base_path, 'yolov3.weights')
 
-# Função para carregar nomes das classes
+
 def get_classes(file):
     with open(file, 'r') as f:
         classes = f.read().strip().split("\n")
     return classes
 
-# Função para redimensionar a imagem mantendo a proporção
+
 def resize_with_aspect_ratio(image, width=None, height=None, inter=cv2.INTER_AREA):
     dim = None
     (h, w) = image.shape[:2]
@@ -40,7 +40,7 @@ def resize_with_aspect_ratio(image, width=None, height=None, inter=cv2.INTER_ARE
     resized = cv2.resize(image, dim, interpolation=inter)
     return resized
 
-# Função para desenhar as bordas ao redor dos objetos detectados
+
 def draw_boxes(image_np, detections):
     for detection in detections:
         x, y, w, h = detection['box']['x'], detection['box']['y'], detection['box']['w'], detection['box']['h']
@@ -53,7 +53,7 @@ def draw_boxes(image_np, detections):
         cv2.putText(image_np, text, (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 2)
     return image_np
 
-# Função para processar a imagem
+
 def detect_objects(image_np):
     (H, W) = image_np.shape[:2]
     blob = cv2.dnn.blobFromImage(image_np, 1/255.0, (416, 416), swapRB=True, crop=False)
@@ -99,7 +99,7 @@ def detect_objects(image_np):
 
     return detections
 
-# Carregar as classes e a rede YOLO
+
 classes = get_classes(labels_path)
 net = cv2.dnn.readNetFromDarknet(config_path, weights_path)
 
@@ -114,7 +114,7 @@ async def detect_objects_route(file: UploadFile = File(...)):
     detections = detect_objects(image_np)
     image_np = draw_boxes(image_np, detections)
 
-    # Converta a imagem processada para base64
+    
     _, buffer = cv2.imencode('.jpg', image_np)
     encoded_image = base64.b64encode(buffer).decode('utf-8')
 
